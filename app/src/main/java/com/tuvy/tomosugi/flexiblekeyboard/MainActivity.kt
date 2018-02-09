@@ -24,6 +24,8 @@ class MainActivity : AppCompatActivity() {
         val fragments = listOf(TutorialStartFragment.getInstance(), TutorialEndFragment.getInstance())
         binding.viewPager.offscreenPageLimit = fragments.size - 1
         binding.viewPager.adapter = ViewPagerAdapter(fragments, supportFragmentManager)
+
+        binding.tabLayout.setupWithViewPager(binding.viewPager, true)
     }
 
     private class ViewPagerAdapter(private val fragments: List<Fragment>, fm: FragmentManager) : FragmentPagerAdapter(fm) {
