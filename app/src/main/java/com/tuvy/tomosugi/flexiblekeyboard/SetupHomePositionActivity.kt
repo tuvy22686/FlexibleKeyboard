@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.tuvy.tomosugi.flexiblekeyboard.databinding.ActivitySetupHomePositionBinding
+import com.tuvy.tomosugi.flexiblekeyboard.dialog.DescriptionDialog
 
 class SetupHomePositionActivity : AppCompatActivity() {
 
@@ -21,5 +22,12 @@ class SetupHomePositionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        setupDialog()
+    }
+
+    private fun setupDialog() {
+        DescriptionDialog.getInstance("title", "message")
+                .show(supportFragmentManager, DescriptionDialog.TAG)
     }
 }

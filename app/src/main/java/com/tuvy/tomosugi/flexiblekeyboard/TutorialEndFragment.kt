@@ -25,6 +25,11 @@ class TutorialEndFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        setupButton()
+    }
+
+    private fun setupButton() {
         binding.startButton.setOnClickListener {
             startActivity(SetupHomePositionActivity.createIntent(context))
         }
