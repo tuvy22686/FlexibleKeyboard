@@ -1,10 +1,11 @@
-package com.tuvy.tomosugi.flexiblekeyboard
+package com.tuvy.tomosugi.flexiblekeyboard.presentation
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import com.tuvy.tomosugi.flexiblekeyboard.databinding.ActivityMainBinding
+import com.tuvy.tomosugi.flexiblekeyboard.misc.BaseActivity
 
 class MainActivity : BaseActivity() {
 

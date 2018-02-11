@@ -1,4 +1,4 @@
-package com.tuvy.tomosugi.flexiblekeyboard
+package com.tuvy.tomosugi.flexiblekeyboard.presentation
 
 import android.content.Context
 import android.content.Intent
@@ -8,6 +8,7 @@ import android.view.MotionEvent
 import android.view.View
 import com.tuvy.tomosugi.flexiblekeyboard.databinding.ActivitySetupHomePositionBinding
 import com.tuvy.tomosugi.flexiblekeyboard.dialog.DescriptionDialog
+import com.tuvy.tomosugi.flexiblekeyboard.misc.BaseActivity
 
 class SetupHomePositionActivity : BaseActivity() {
 

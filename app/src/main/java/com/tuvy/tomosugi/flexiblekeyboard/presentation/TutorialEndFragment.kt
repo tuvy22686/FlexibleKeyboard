@@ -1,4 +1,4 @@
-package com.tuvy.tomosugi.flexiblekeyboard
+package com.tuvy.tomosugi.flexiblekeyboard.presentation
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
