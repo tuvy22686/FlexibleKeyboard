@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import com.tuvy.tomosugi.flexiblekeyboard.util.DisplayUtil
 import com.tuvy.tomosugi.flexiblekeyboard.databinding.ActivitySetupHomePositionBinding
 import com.tuvy.tomosugi.flexiblekeyboard.dialog.DescriptionDialog
 import com.tuvy.tomosugi.flexiblekeyboard.misc.BaseActivity
@@ -26,6 +27,7 @@ class SetupHomePositionActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         setupDialog()
+        Log.d("displaySize", "size: " + DisplayUtil.getDisplaySize(this))
     }
 
     private fun setupDialog() {
