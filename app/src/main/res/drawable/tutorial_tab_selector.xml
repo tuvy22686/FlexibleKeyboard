@@ -4,5 +4,5 @@
     <item android:drawable="@drawable/tutorial_tab_selected"
         android:state_selected="true"/>
 
-    <item android:drawable="@drawable/tutorial_tab_default"/>
+    <item android:drawable="@drawable/tutorial_tab"/>
 </selector>
