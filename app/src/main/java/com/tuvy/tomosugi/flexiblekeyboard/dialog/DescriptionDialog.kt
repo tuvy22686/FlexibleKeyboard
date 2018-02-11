@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v7.app.AlertDialog
+import android.view.WindowManager
 
 class DescriptionDialog : DialogFragment() {
 
@@ -35,8 +36,19 @@ class DescriptionDialog : DialogFragment() {
         }.create()
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        setupWindowFocusable()
+    }
+
     override fun onPause() {
         super.onPause()
         dismiss()
+    }
+
+    private fun setupWindowFocusable() {
+        val window = dialog.window
+        window.addFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE)
     }
 }
