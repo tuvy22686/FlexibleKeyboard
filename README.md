@@ -1,8 +1,13 @@
 # FlexibleKeyboard
 created at 2018/02/09
 
+## バージョン
+* Android Studio 3.0.1
+* target api19~26
+
 ## 説明
-本アプリ内で動くキーボードを作成するアプリ
+本アプリ内で動くキーボードを作成するアプリ  
+タブレット向け
 
 ## Todo
 * 画面
