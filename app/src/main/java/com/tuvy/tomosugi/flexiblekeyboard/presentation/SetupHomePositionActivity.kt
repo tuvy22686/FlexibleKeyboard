@@ -5,11 +5,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MotionEvent
-import android.view.View
-import com.tuvy.tomosugi.flexiblekeyboard.util.DisplayUtil
 import com.tuvy.tomosugi.flexiblekeyboard.databinding.ActivitySetupHomePositionBinding
 import com.tuvy.tomosugi.flexiblekeyboard.dialog.DescriptionDialog
 import com.tuvy.tomosugi.flexiblekeyboard.misc.BaseActivity
+import com.tuvy.tomosugi.flexiblekeyboard.util.DisplayUtil
 
 class SetupHomePositionActivity : BaseActivity() {
 
@@ -23,11 +22,23 @@ class SetupHomePositionActivity : BaseActivity() {
         ActivitySetupHomePositionBinding.inflate(layoutInflater)
     }
 
+    private val setupHomePositionViewModel : SetupHomePositionViewModel by lazy {
+        SetupHomePositionViewModel(Preference(this))
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        setupHomePositionViewModel.onCreate()
         setupDialog()
         Log.d("displaySize", "size: " + DisplayUtil.getDisplaySize(this))
+        setupHomePositionViewModel.onBind()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        setupHomePositionViewModel.onDestroy()
     }
 
     private fun setupDialog() {
@@ -38,13 +49,9 @@ class SetupHomePositionActivity : BaseActivity() {
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         super.onTouchEvent(event)
         event?.let {
-            if (it.action == MotionEvent.ACTION_DOWN) {
-                binding.textView.visibility = View.GONE
-            }
-            if (it.action == MotionEvent.ACTION_UP) {
-                binding.textView.visibility = View.VISIBLE
-                Log.d("onTouchEvent", "count: " + it.pointerCount.toString())
-                Log.d("onTouchEvent", it.x.toString() + ", " + it.y.toString())
+            when (it.action) {
+                MotionEvent.ACTION_DOWN -> setupHomePositionViewModel.onTouchDown()
+                MotionEvent.ACTION_UP -> setupHomePositionViewModel.onTouchUp()
             }
         }
         return true
