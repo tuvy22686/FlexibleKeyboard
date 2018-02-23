@@ -2,6 +2,7 @@ package com.tuvy.tomosugi.flexiblekeyboard.presentation
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.MotionEvent
@@ -32,6 +33,8 @@ class SetupHomePositionActivity : BaseActivity() {
 
         setupHomePositionViewModel.onCreate()
         setupDialog()
+        setupBackgroundColor()
+
         Log.d("displaySize", "size: " + DisplayUtil.getDisplaySize(this))
         setupHomePositionViewModel.onBind()
     }
@@ -44,6 +47,13 @@ class SetupHomePositionActivity : BaseActivity() {
     private fun setupDialog() {
         DescriptionDialog.getInstance("title", "message")
                 .show(supportFragmentManager, DescriptionDialog.TAG)
+    }
+
+    private fun setupBackgroundColor() {
+        setupHomePositionViewModel.colorAnimator.addUpdateListener {
+            val colorCode = it.animatedValue as Int
+            binding.parentLayout.background = ColorDrawable(colorCode)
+        }
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
