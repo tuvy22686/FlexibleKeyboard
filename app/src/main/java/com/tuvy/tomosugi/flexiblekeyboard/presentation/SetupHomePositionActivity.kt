@@ -35,13 +35,24 @@ class SetupHomePositionActivity : BaseActivity() {
         setupDialog()
         setupBackgroundColor()
 
-        Log.d("displaySize", "size: " + DisplayUtil.getDisplaySize(this))
+        Log.d("displaySize", "display size: " + DisplayUtil.getDisplaySize(this))
         setupHomePositionViewModel.onBind()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         setupHomePositionViewModel.onDestroy()
+    }
+
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+        super.onTouchEvent(event)
+        event?.let {
+            when (it.action) {
+                MotionEvent.ACTION_DOWN -> setupHomePositionViewModel.onTouchDown()
+                MotionEvent.ACTION_UP -> setupHomePositionViewModel.onTouchUp()
+            }
+        }
+        return true
     }
 
     private fun setupDialog() {
@@ -54,16 +65,5 @@ class SetupHomePositionActivity : BaseActivity() {
             val colorCode = it.animatedValue as Int
             binding.parentLayout.background = ColorDrawable(colorCode)
         }
-    }
-
-    override fun onTouchEvent(event: MotionEvent?): Boolean {
-        super.onTouchEvent(event)
-        event?.let {
-            when (it.action) {
-                MotionEvent.ACTION_DOWN -> setupHomePositionViewModel.onTouchDown()
-                MotionEvent.ACTION_UP -> setupHomePositionViewModel.onTouchUp()
-            }
-        }
-        return true
     }
 }
