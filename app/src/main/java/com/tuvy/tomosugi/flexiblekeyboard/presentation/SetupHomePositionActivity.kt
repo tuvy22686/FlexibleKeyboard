@@ -4,12 +4,11 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.MotionEvent
+import com.tuvy.tomosugi.flexiblekeyboard.application.Preference
 import com.tuvy.tomosugi.flexiblekeyboard.databinding.ActivitySetupHomePositionBinding
 import com.tuvy.tomosugi.flexiblekeyboard.dialog.DescriptionDialog
 import com.tuvy.tomosugi.flexiblekeyboard.misc.BaseActivity
-import com.tuvy.tomosugi.flexiblekeyboard.util.DisplayUtil
 
 class SetupHomePositionActivity : BaseActivity() {
 
@@ -34,8 +33,6 @@ class SetupHomePositionActivity : BaseActivity() {
         setupHomePositionViewModel.onCreate()
         setupDialog()
         setupBackgroundColor()
-
-        Log.d("displaySize", "display size: " + DisplayUtil.getDisplaySize(this))
         setupHomePositionViewModel.onBind()
     }
 
@@ -46,12 +43,7 @@ class SetupHomePositionActivity : BaseActivity() {
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         super.onTouchEvent(event)
-        event?.let {
-            when (it.action) {
-                MotionEvent.ACTION_DOWN -> setupHomePositionViewModel.onTouchDown()
-                MotionEvent.ACTION_UP -> setupHomePositionViewModel.onTouchUp()
-            }
-        }
+        event?.let { setupHomePositionViewModel.onTouchScreen(it) }
         return true
     }
 

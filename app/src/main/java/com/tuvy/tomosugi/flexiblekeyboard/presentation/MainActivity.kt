@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
+import com.tuvy.tomosugi.flexiblekeyboard.application.Preference
 import com.tuvy.tomosugi.flexiblekeyboard.databinding.ActivityMainBinding
 import com.tuvy.tomosugi.flexiblekeyboard.misc.BaseActivity
 import com.tuvy.tomosugi.flexiblekeyboard.util.DisplayUtil
@@ -17,14 +18,17 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        initDisplaySize()
+        initEnvironment()
         setupTutorial()
     }
 
-    private fun initDisplaySize() {
-        val preference = Preference(this)
-        preference.setDisplaySizeHeight(DisplayUtil.getDisplaySize(this).x)
-        preference.setDisplaySizeWidth(DisplayUtil.getDisplaySize(this).y)
+    private fun initEnvironment() {
+        val activity = this
+        Preference(activity).apply {
+            clear()
+            setDisplaySizeHeight(DisplayUtil.getDisplaySize(activity).x)
+            setDisplaySizeWidth(DisplayUtil.getDisplaySize(activity).y)
+        }
     }
 
     private fun setupTutorial() {

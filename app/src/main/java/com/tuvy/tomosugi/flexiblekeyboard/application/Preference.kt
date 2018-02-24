@@ -1,4 +1,4 @@
-package com.tuvy.tomosugi.flexiblekeyboard.presentation
+package com.tuvy.tomosugi.flexiblekeyboard.application
 
 import android.content.Context
 import android.preference.PreferenceManager
@@ -10,7 +10,7 @@ class Preference(context: Context) {
     private val PREFIX = context.packageName + '.'
     private val DISPLAY_SIZE_HEIGHT = PREFIX + "display_size_height"
     private val DISPLAY_SIZE_WIDTH = PREFIX + "display_size_width"
-    private val EXPERIENCE_TO_TOUCH = PREFIX + "experience_to_touch"
+    private val EXP_TO_TOUCH_FIVE = PREFIX + "exp_to_touch_five"
 
     fun clear() {
         preference.edit().clear().apply()
@@ -32,11 +32,11 @@ class Preference(context: Context) {
         return preference.getInt(DISPLAY_SIZE_WIDTH, 0)
     }
 
-    fun setExperienceToTouch(flag: Boolean) {
-        preference.edit().putBoolean(EXPERIENCE_TO_TOUCH, flag).apply()
+    fun setExpToTouchFive(flag: Boolean) {
+        preference.edit().putBoolean(EXP_TO_TOUCH_FIVE, flag).apply()
     }
 
-    fun getExprienceToTouch(): Boolean {
-        return preference.getBoolean(EXPERIENCE_TO_TOUCH, false)
+    fun getExpToTouchFive(): Boolean {
+        return preference.getBoolean(EXP_TO_TOUCH_FIVE, false)
     }
 }
