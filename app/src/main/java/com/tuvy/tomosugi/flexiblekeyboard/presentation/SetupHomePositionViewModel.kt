@@ -30,8 +30,8 @@ class SetupHomePositionViewModel(private val preference: Preference) : ViewModel
             preference.setExpToTouchFive(true)
             startInitialization()
         }
-        if (MotionEvent.ACTION_UP == event.action) {
-            return touchUpScreen()
+        if (MotionEvent.ACTION_POINTER_UP == event.actionMasked) {
+            return touchUpScreen(event)
         }
         return false
     }
@@ -41,7 +41,7 @@ class SetupHomePositionViewModel(private val preference: Preference) : ViewModel
         colorAnimator.start()
     }
 
-    private fun touchUpScreen(): Boolean {
+    private fun touchUpScreen(event: MotionEvent): Boolean {
         endToPress = System.currentTimeMillis()
         if (preference.getExpToTouchFive()) {
             if ((endToPress - beginToPress) >= Constant.Setup.HOLDING_TIME) {
