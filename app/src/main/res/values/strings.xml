@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">FlexibleKeyboard</string>
+
+    <string name="dialog_setup_title">セットアップ</string>
+    <string name="dialog_setup_description">5本の指の腹で画面にふれつづけてください。\n画面が十分に緑色になるまでです</string>
+    <string name="dialog_setup_complete">完了しました</string>
 </resources>

@@ -25,14 +25,15 @@ class SetupHomePositionViewModel(private val preference: Preference) : ViewModel
     override fun onDestroy() {
     }
 
-    fun onTouchScreen(event: MotionEvent) {
+    fun onTouchScreen(event: MotionEvent): Boolean {
         if (touchWithFiveFingers(event) && !preference.getExpToTouchFive()) {
             preference.setExpToTouchFive(true)
             startInitialization()
         }
         if (MotionEvent.ACTION_UP == event.action) {
-            touchUpScreen()
+            return touchUpScreen()
         }
+        return false
     }
 
     private fun startInitialization() {
@@ -40,17 +41,19 @@ class SetupHomePositionViewModel(private val preference: Preference) : ViewModel
         colorAnimator.start()
     }
 
-    private fun touchUpScreen() {
+    private fun touchUpScreen(): Boolean {
         endToPress = System.currentTimeMillis()
         if (preference.getExpToTouchFive()) {
             if ((endToPress - beginToPress) >= Constant.Setup.HOLDING_TIME) {
                 // 5秒たったときの処理
                 Log.d("Setup", "went to 5 seconds")
+                return true
             } else {
                 preference.setExpToTouchFive(false)
                 colorAnimator.reverse()
             }
         }
+        return false
     }
 
     private fun touchWithFiveFingers(event: MotionEvent): Boolean {

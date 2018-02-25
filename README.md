@@ -22,3 +22,4 @@ created at 2018/02/09
     * `TutorialStartFragment`
     * `TutorialEndFragment`
 * `SetupHomePositionActivity`: ホームポジション設定
+    * `SetupHomePositionViewModel`

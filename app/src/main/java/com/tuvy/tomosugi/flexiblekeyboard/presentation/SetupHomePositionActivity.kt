@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.MotionEvent
+import com.tuvy.tomosugi.flexiblekeyboard.R
 import com.tuvy.tomosugi.flexiblekeyboard.application.Preference
 import com.tuvy.tomosugi.flexiblekeyboard.databinding.ActivitySetupHomePositionBinding
 import com.tuvy.tomosugi.flexiblekeyboard.dialog.DescriptionDialog
@@ -43,12 +44,17 @@ class SetupHomePositionActivity : BaseActivity() {
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         super.onTouchEvent(event)
-        event?.let { setupHomePositionViewModel.onTouchScreen(it) }
+        event?.let {
+            if(setupHomePositionViewModel.onTouchScreen(it)) {
+                DescriptionDialog.getInstance(getString(R.string.dialog_setup_title), getString(R.string.dialog_setup_complete))
+                        .show(supportFragmentManager, DescriptionDialog.TAG)
+            }
+        }
         return true
     }
 
     private fun setupDialog() {
-        DescriptionDialog.getInstance("title", "message")
+        DescriptionDialog.getInstance(getString(R.string.dialog_setup_title), getString(R.string.dialog_setup_description))
                 .show(supportFragmentManager, DescriptionDialog.TAG)
     }
 
